@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const uuid = require('uuid');
 const members = require('../../Members');
+const bodyParser = require('body-parser');
+
+const jsonParser = bodyParser.json();
 
 
 router.get('/', (req, res) => {
@@ -19,11 +22,22 @@ router.get('/:id', (req, res) => {
     }
 });
 
+// get instance of member
+// router.delete('/:id', (req, res) => {
+//     const found = members.some(member => member.id === parseInt(req.params.id));
+//     if(found) {
+//         res.json(members.filter({msg: "member was deleted",
+//          members: member => member.id !== parseInt(req.params.id)}));
+//     } else {
+//         res.status(400).json({msg: ` No Member with the ID of ${req.params.id}`});
+//     }
+// });
+
 //create member
 
-router.post('/', (req, res) => {
+router.post('/', jsonParser, (req, res) => {
     console.log(req.body);
-
+    console.log('im in post')
     console.log( req.body.name, req.body.email);
     const newMember = {
         id: uuid.v4(),
