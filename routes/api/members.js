@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const uuid = require('uuid');
-const members = require('../../Members');
+const members = require('../../members');
 const bodyParser = require('body-parser');
 
 const jsonParser = bodyParser.json();
